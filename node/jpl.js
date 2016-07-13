@@ -63,8 +63,10 @@ module.exports = {
 			var k = s[i];
 			var o = k.split(",");
 			
-			if (k[0] === "\\" || (o.length < 2 && !/^[a-z]+$/g.test(k))) {
+			if (o.length < 2 && !/^[a-z]+$/g.test(k)) {
 				a.push(k);
+			} else if (k[0] === "\\") {
+				a.push(k.slice(1, k.length));
 			} else {
 				a.push(j.exec(j, o.join(" "))[0]);
 			}
