@@ -9,8 +9,8 @@ module.exports = {
 	},
 	exec: function (j, s) {
 		s = s.replace(/^ +/, "").split(" ");
-		c = s.shift();
-		a = [];
+		var c = s.shift();
+		var a = [];
 		
 		if (c === "$" || !c.length) {
 			return "";
@@ -26,7 +26,7 @@ module.exports = {
 				a.push(j.exec(j, o.join(" ")));
 			}
 		}
-		console.log(a);
+		
 		var m = j.cmd[c];
 		
 		if (!m) {
