@@ -4,15 +4,16 @@ module.exports = {
 		"p": [[JSON.stringify], (j, a) => a[0]],
 		"+": [[Number, Number], (j, a) => a[0] + a[1]],
 		"-": [[Number, Number], (j, a) => a[0] - a[1]],
+		"c": [[String, String], (j, a) => a[0] + a[1]],
+		"g": [[String], function (j, a) {
+			return j.vars[a[0]];
+		}],
 		"s": [[String, a => a], function (j, a) {
 			if (/^[a-z]+$/g.test(a[0])) {
 				return "JPL: Error: Variable name '" + a[0] + "' is all lowercase";
 			}
 			
 			j.vars[a[0]] = a[1];
-		}],
-		"g": [[String], function (j, a) {
-			return j.vars[a[0]];
 		}]
 	},
 	exec: function (j, s) {
