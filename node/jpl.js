@@ -33,6 +33,8 @@ module.exports = {
 			return "JPL: Error: Function not found: '" + c + "'";
 		}
 		
-		return j.cmd[c](a);
+		return m[1](a.map(function (e, i) {
+			return m[0][i](e);
+		}));
 	}
 };
