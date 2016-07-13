@@ -4,7 +4,7 @@ var readline = require("readline");
 var interface = readline.createInterface({
 	input: process.stdin,
 	output: process.stdout,
-	terminal: false
+	terminal: true
 });
 
 interface.on("line", function (line) {
