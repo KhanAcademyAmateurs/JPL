@@ -1,5 +1,8 @@
 module.exports = {
-	plize: a => a - 1 ? "s" : "",
+	pluralize: a => a - 1 ? "s" : "",
+	err: a => "JPL: Error: " + a,
+	
+	previous: undefined,
 	vars: {},
 	cmd: {
 		"p": [[JSON.stringify], (j, a) => a[0]],
@@ -10,17 +13,26 @@ module.exports = {
 			var v = j.vars[a[0]];
 			
 			if (v === undefined) {
-				return "JPL: Error: Variable '" + a[0] + "' not found";
+				return j.err("Variable '" + a[0] + "' not found");
 			}
 			
 			return v;
 		}],
 		"s": [[String, a => a], function (j, a) {
 			if (/^[a-z]+$/g.test(a[0])) {
-				return "JPL: Error: Variable name '" + a[0] + "' is all lowercase";
+				return j.err("Variable name '" + a[0] + "' is all lowercase");
 			}
 			
 			return (j.vars[a[0]] = a[1]), "";
+		}],
+		"t": [[], function (j) {
+			var p = j.previous;
+			
+			if (p === undefined) {
+				return j.err("Nothing to take using 't'");
+			}
+			
+			return p;
 		}]
 	},
 	exec: function (j, s) {
@@ -35,14 +47,14 @@ module.exports = {
 		var m = j.cmd[c];
 		
 		if (!m) {
-			return ["JPL: Error: Function not found: '" + c + "'", true];
+			return [j.err("Function not found: '" + c + "'"), true];
 		}
 		
 		var t = m[0].length;
 		var n = s.length;
 		
 		if (n !== t) {
-			return ["JPL: Error: Incorrect number of arguments: '" + c + "' takes " + n + " argument" + j.plize(n), true];
+			return [j.err("Incorrect number of arguments: '" + c + "' takes " + n + " argument" + j.pluralize(n)), true];
 		}
 		
 		for (var i = 0; i < n; i ++) {
@@ -59,6 +71,8 @@ module.exports = {
 		var r = m[1](j, a.map(function (e, i) {
 			return m[0][i](e);
 		}));
+		
+		j.previous = r;
 		
 		return [typeof r === "string" ? r : (r = JSON.stringify(r)), c !== "p" && r.length];
 	}
