@@ -5,7 +5,7 @@ module.exports = {
 		"+": [[Number, Number], (j, a) => a[0] + a[1]],
 		"-": [[Number, Number], (j, a) => a[0] - a[1]],
 		"s": [[String, a => a], function (j, a) {
-			if (a[0].test(/^[a-z]+$/)) {
+			if (/^[a-z]+$/g.test(a[0])) {
 				return "JPL: Error: Variable name '" + a[0] + "' is all lowercase";
 			}
 			
