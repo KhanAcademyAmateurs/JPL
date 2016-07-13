@@ -10,6 +10,9 @@ module.exports = {
 			}
 			
 			j.vars[a[0]] = a[1];
+		}],
+		"g": [[String], function (j, a) {
+			return j.vars[a[0]];
 		}]
 	},
 	exec: function (j, s) {
@@ -18,7 +21,7 @@ module.exports = {
 		var a = [];
 		
 		if (c === "$" || !c.length) {
-			return "";
+			return ["", false];
 		}
 		
 		for (var i = 0; i < s.length; i ++) {
@@ -35,7 +38,7 @@ module.exports = {
 		var m = j.cmd[c];
 		
 		if (!m) {
-			return "JPL: Error: Function not found: '" + c + "'";
+			return ["JPL: Error: Function not found: '" + c + "'", true];
 		}
 		
 		var r = m[1](j, a.map(function (e, i) {
