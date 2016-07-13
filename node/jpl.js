@@ -47,6 +47,6 @@ module.exports = {
 			return m[0][i](e);
 		}));
 		
-		return [typeof r === "string" ? r : JSON.stringify(r), c !== "p"];
+		return [typeof r === "string" ? r : JSON.stringify(r), c !== "p" && r.length];
 	}
 };
