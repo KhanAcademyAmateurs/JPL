@@ -26,7 +26,20 @@ module.exports = {
 			return ["", false];
 		}
 		
-		for (var i = 0; i < s.length; i ++) {
+		var m = j.cmd[c];
+		
+		if (!m) {
+			return ["JPL: Function not found: '" + c + "'", true];
+		}
+		
+		var t = m[0].length;
+		var n = s.length;
+		
+		if (n !== t) {
+			return ["JPL: Incorrect number of arguments: '" + c + "' takes " + n + " arguments, not " + t + "!", true];
+		}
+		
+		for (var i = 0; i < n; i ++) {
 			var k = s[i];
 			var o = k.split(",");
 			
@@ -35,12 +48,6 @@ module.exports = {
 			} else {
 				a.push(j.exec(j, o.join(" "))[0]);
 			}
-		}
-		
-		var m = j.cmd[c];
-		
-		if (!m) {
-			return ["JPL: Error: Function not found: '" + c + "'", true];
 		}
 		
 		var r = m[1](j, a.map(function (e, i) {
