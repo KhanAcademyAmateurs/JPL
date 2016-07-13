@@ -26,7 +26,7 @@ module.exports = {
 				a.push(j.exec(j, o.join(" ")));
 			}
 		}
-		
+		console.log(a);
 		var m = j.cmd[c];
 		
 		if (!m) {
