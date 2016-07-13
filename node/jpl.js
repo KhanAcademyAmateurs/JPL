@@ -8,6 +8,8 @@ module.exports = {
 		"p": [[JSON.stringify], (j, a) => a[0]],
 		"+": [[Number, Number], (j, a) => a[0] + a[1]],
 		"-": [[Number, Number], (j, a) => a[0] - a[1]],
+		"*": [[Number, Number], (j, a) => a[0] * a[1]],
+		"/": [[Number, Number], (j, a) => a[0] / a[1]],
 		"c": [[String, String], (j, a) => a[0] + a[1]],
 		"g": [[String], function (j, a) {
 			var v = j.vars[a[0]];
@@ -61,7 +63,7 @@ module.exports = {
 			var k = s[i];
 			var o = k.split(",");
 			
-			if (!/^[a-z]+/g.test(k) || k[0] === "\\") {
+			if (k[0] === "\\" || (o.length < 2 && !/^[a-z]+$/g.test(k))) {
 				a.push(k);
 			} else {
 				a.push(j.exec(j, o.join(" "))[0]);
