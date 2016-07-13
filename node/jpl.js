@@ -8,11 +8,11 @@ module.exports = {
 		}]
 	},
 	exec: function (j, s) {
-		s = s.split(" ");
+		s = s.replace(/^ +/, "").split(" ");
 		c = s.shift();
 		a = [];
 		
-		if (c === "$") {
+		if (c === "$" || !c.length) {
 			return "";
 		}
 		
