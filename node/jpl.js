@@ -27,6 +27,12 @@ module.exports = {
 			}
 		}
 		
+		var m = j.cmd[c];
+		
+		if (!m) {
+			return "JPL: Error: Function not found";
+		}
+		
 		return j.cmd[c](a);
 	}
 };
