@@ -7,6 +7,6 @@ var interface = readline.createInterface({
 	terminal: false
 });
 
-interface.on(function (line) {
+interface.on("line", function (line) {
 	console.log(JPL.exec(line));
 });
