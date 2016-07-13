@@ -4,9 +4,10 @@ var readline = require("readline");
 var interface = readline.createInterface({
 	input: process.stdin,
 	output: process.stdout,
-	terminal: true
+	terminal: false,
+	prompt: "> "
 });
 
 interface.on("line", function (line) {
-	console.log(JPL.exec(JPL, line));
+	return JPL.exec(JPL, line);
 });
