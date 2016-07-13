@@ -1,9 +1,9 @@
 module.exports = {
 	cmd: {
-		"+": [[Number, Number], true, function (a) {
+		"+": [[Number, Number], function (a) {
 			return a[0] + a[1];
 		}],
-		"-": [[Number, Number], true, function (a) {
+		"-": [[Number, Number], function (a) {
 			return a[0] - a[1];
 		}]
 	},
@@ -33,8 +33,8 @@ module.exports = {
 			return "JPL: Error: Function not found: '" + c + "'";
 		}
 		
-		return JSON.stringify(m[2](a.map(function (e, i) {
+		return m[1](a.map(function (e, i) {
 			return m[0][i](e);
-		}))) + m[1] ? "\n" : "";
+		}));
 	}
 };
