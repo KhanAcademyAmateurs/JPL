@@ -8,5 +8,5 @@ var interface = readline.createInterface({
 });
 
 interface.on("line", function (line) {
-	console.log(JPL.exec(line));
+	console.log(JPL.exec(JPL, line));
 });
