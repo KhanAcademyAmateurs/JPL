@@ -1,13 +1,14 @@
 var JPL = require("./jpl.js");
 var readline = require("readline");
 
-var interface = readline.createInterface({
+var i = readline.createInterface({
 	input: process.stdin,
 	output: process.stdout,
-	terminal: false,
-	prompt: "> "
+	terminal: false
 });
 
-interface.on("line", function (line) {
-	return JPL.exec(JPL, line);
-});
+while (true) {
+	i.question("> ", function (line) {
+		process.stdout.write(JPL.exec(JPL, line));
+	});
+}
