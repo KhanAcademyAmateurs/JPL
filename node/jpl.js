@@ -15,7 +15,7 @@ module.exports = {
 		if (c === "$") {
 			return "";
 		}
-		
+		console.log(c);
 		for (var i = 0; i < s.length; i ++) {
 			var k = s[i];
 			var o = k.split(",");
@@ -26,11 +26,11 @@ module.exports = {
 				a.push(j.exec(j, o.join(" ")));
 			}
 		}
-		
+		console.log(c);
 		var m = j.cmd[c];
 		
 		if (!m) {
-			return "JPL: Error: Function not found: " + c;
+			return "JPL: Error: Function not found: '" + c + "'";
 		}
 		
 		return j.cmd[c](a);
