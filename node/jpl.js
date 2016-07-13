@@ -15,18 +15,18 @@ module.exports = {
 		if (c === "$") {
 			return "";
 		}
-		console.log(c);
+		
 		for (var i = 0; i < s.length; i ++) {
 			var k = s[i];
 			var o = k.split(",");
 			
-			if (k === o) {
+			if (o.length < 2) {
 				a.push(k);
 			} else {
 				a.push(j.exec(j, o.join(" ")));
 			}
 		}
-		console.log(c);
+		
 		var m = j.cmd[c];
 		
 		if (!m) {
