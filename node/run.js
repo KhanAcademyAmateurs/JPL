@@ -9,7 +9,7 @@ var i = readline.createInterface({
 
 function prompt () {
 	i.question("> ", function (line) {
-		process.stdout.write(JPL.exec(JPL, line));
+		process.stdout.write(JSON.stringify(JPL.exec(JPL, line)));
 		prompt();
 	});
 }
