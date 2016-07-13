@@ -7,7 +7,13 @@ module.exports = {
 		"-": [[Number, Number], (j, a) => a[0] - a[1]],
 		"c": [[String, String], (j, a) => a[0] + a[1]],
 		"g": [[String], function (j, a) {
-			return j.vars[a[0]];
+			var v = j.vars[a[0]];
+			
+			if (v === undefined) {
+				return "JPL: Error: Variable '" + v + "' not found";
+			}
+			
+			return v;
 		}],
 		"s": [[String, a => a], function (j, a) {
 			if (/^[a-z]+$/g.test(a[0])) {
