@@ -23,7 +23,7 @@ module.exports = {
 			if (k === o) {
 				a.push(k);
 			} else {
-				a.push(j.exec(j, o.replace(/,/g, " ")));
+				a.push(j.exec(j, o.join(" ")));
 			}
 		}
 		
