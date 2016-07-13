@@ -2,7 +2,9 @@
 JPL: **J**PL **P**rogramming **L**anguage
 
 JPL is a simple programming language designed to be lightweight and mergeable with other projects/frameworks, especially KASH & node.
+
 -----
+
 # Specs
 
 Single line comments start with `$`.
@@ -10,7 +12,7 @@ Multiline comments are not included in the specification, as they make the langu
 
 There are no "operators"; there are only functions, some of which are built in.
 
-This example shows how to call a function, create a variable, create a function, and how to use all the built-in operators in the node implementation. (NOTE: Built-ins may vary based on the implementation. The KASH verison is intended to include system calls.)
+This example shows how to call a function, create a variable, create a function, and how to use most of the built-in operators in the node implementation. (NOTE: Built-ins may vary based on the implementation. The KASH verison is intended to include system calls.)
 
 ```
 $ Implicitly prints 7 (3 + 4). The function is +, and the arguments are separated by a space:
