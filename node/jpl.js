@@ -1,12 +1,17 @@
 module.exports = {
 	cmd: {
-		"+": [[Number, Number], function (a) {
-			return a[0] + a[1];
-		}],
-		"-": [[Number, Number], function (a) {
-			return a[0] - a[1];
+		"p": [[JSON.stringify], (j, a) => a],
+		"+": [[Number, Number], (j, a) => a[0] + a[1]],
+		"-": [[Number, Number], (j, a) => a[0] - a[1]],
+		"s": [[String, a => a], function (j, a) {
+			if (a[0].test(/^[a-z]+$/)) {
+				return "JPL: Error: Variable name '" + a[0] + "' is all lowercase";
+			}
+			
+			j.vars[a[0]] = a[1];
 		}]
 	},
+	vars: {},
 	exec: function (j, s) {
 		s = s.replace(/^ +/, "").split(" ");
 		var c = s.shift();
