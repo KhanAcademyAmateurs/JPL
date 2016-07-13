@@ -1,14 +1,14 @@
-var JPL = {
+module.exports = {
 	exec: function (s) {
 		s = s.split(" ");
 		c = s.shift();
 		
-		(a = {
-			"+": function (a) {
+		return (a = {
+			"+": [[Number, Number], function (a) {
 				return a[0] + a[1];
-			}
-		}[c]) ? a(s) : "JPL Error: Function not found";
+			}]
+		}[c]) ? a[1](s.map(function (e, i) {
+			return a[0][i](e);
+		})) : "JPL Error: Function not found";
 	}
 };
-
-module.exports = JPL;
