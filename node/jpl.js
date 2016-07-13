@@ -29,14 +29,14 @@ module.exports = {
 		var m = j.cmd[c];
 		
 		if (!m) {
-			return ["JPL: Function not found: '" + c + "'", true];
+			return ["JPL: Error: Function not found: '" + c + "'", true];
 		}
 		
 		var t = m[0].length;
 		var n = s.length;
 		
 		if (n !== t) {
-			return ["JPL: Incorrect number of arguments: '" + c + "' takes " + j.plize(n) + " arguments", true];
+			return ["JPL: Error: Incorrect number of arguments: '" + c + "' takes " + n + " argument" + j.plize(n), true];
 		}
 		
 		for (var i = 0; i < n; i ++) {
