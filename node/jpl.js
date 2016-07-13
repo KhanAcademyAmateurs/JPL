@@ -28,7 +28,7 @@ module.exports = {
 			if (o.length < 2) {
 				a.push(k);
 			} else {
-				a.push(j.exec(j, o.join(" ")));
+				a.push(j.exec(j, o.join(" "))[0]);
 			}
 		}
 		
@@ -38,8 +38,8 @@ module.exports = {
 			return "JPL: Error: Function not found: '" + c + "'";
 		}
 		
-		return JSON.stringify(m[1](j, a.map(function (e, i) {
+		return [JSON.stringify(m[1](j, a.map(function (e, i) {
 			return m[0][i](e);
-		}))) + (c === "p" ? "" : "\n");
+		}))), c === "p"];
 	}
 };
