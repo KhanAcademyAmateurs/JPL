@@ -1,5 +1,5 @@
 module.exports = {
-	iud: a => a === undefined,
+	plize: a => a - 1 ? "s" : "",
 	vars: {},
 	cmd: {
 		"p": [[JSON.stringify], (j, a) => a[0]],
@@ -36,7 +36,7 @@ module.exports = {
 		var n = s.length;
 		
 		if (n !== t) {
-			return ["JPL: Incorrect number of arguments: '" + c + "' takes " + n + " arguments, not " + t + "!", true];
+			return ["JPL: Incorrect number of arguments: '" + c + "' takes " + j.plize(n) + " arguments", true];
 		}
 		
 		for (var i = 0; i < n; i ++) {
