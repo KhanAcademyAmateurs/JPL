@@ -23,15 +23,15 @@ $ Prints 24 (3 * 8). First it stores it in a variable named A (variable & functi
 s A *,3,8
 A
 $ Prints 2 (floor(8 / 3)). It defines a function to compute floor(x / y), then runs it.
-$ First we define the function and arity (number of arguments = 2).
+$ First we define the function, arity (number of arguments = 2), and arg types in array (N-umber, N-umber).
 $ Then we specify the code the function runs (floor the division of A and B, then return). The arguments start at A and end at Z. The arity is set at 2, so only the arguments A and B are defined.
 $ The r function returns the value of the expression above it.
 $ Then we end the function with e.
 $ You cannot have 2 scopes nested within each other; therefore you cannot have two functions within each other.
 $ Then we simply print.
-d F 2
+d F 2 a,N,N
     f /,A,B
     r
 e
-F,8,3
+F 8 3
 ```
