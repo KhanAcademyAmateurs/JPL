@@ -1,4 +1,5 @@
 module.exports = {
+	vars: {},
 	cmd: {
 		"p": [[JSON.stringify], (j, a) => a[0]],
 		"+": [[Number, Number], (j, a) => a[0] + a[1]],
@@ -11,7 +12,6 @@ module.exports = {
 			j.vars[a[0]] = a[1];
 		}]
 	},
-	vars: {},
 	exec: function (j, s) {
 		s = s.replace(/^ +/, "").split(" ");
 		var c = s.shift();
@@ -38,8 +38,10 @@ module.exports = {
 			return "JPL: Error: Function not found: '" + c + "'";
 		}
 		
-		return [JSON.stringify(m[1](j, a.map(function (e, i) {
+		var r = m[1](j, a.map(function (e, i) {
 			return m[0][i](e);
-		}))), c === "p"];
+		}));
+		
+		return [typeof r === "string" ? r : JSON.stringify(r), c === "p"];
 	}
 };
