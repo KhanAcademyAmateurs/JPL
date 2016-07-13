@@ -30,7 +30,7 @@ module.exports = {
 		var m = j.cmd[c];
 		
 		if (!m) {
-			return "JPL: Error: Function not found";
+			return "JPL: Error: Function not found: " + c;
 		}
 		
 		return j.cmd[c](a);
