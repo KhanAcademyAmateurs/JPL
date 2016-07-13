@@ -10,7 +10,7 @@ module.exports = {
 			var v = j.vars[a[0]];
 			
 			if (v === undefined) {
-				return "JPL: Error: Variable '" + v + "' not found";
+				return "JPL: Error: Variable '" + a[0] + "' not found";
 			}
 			
 			return v;
