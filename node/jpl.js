@@ -1,4 +1,5 @@
 module.exports = {
+	iud: a => a === undefined,
 	vars: {},
 	cmd: {
 		"p": [[JSON.stringify], (j, a) => a[0]],
@@ -13,7 +14,7 @@ module.exports = {
 				return "JPL: Error: Variable name '" + a[0] + "' is all lowercase";
 			}
 			
-			j.vars[a[0]] = a[1];
+			return (j.vars[a[0]] = a[1]), "";
 		}]
 	},
 	exec: function (j, s) {
@@ -46,6 +47,6 @@ module.exports = {
 			return m[0][i](e);
 		}));
 		
-		return [typeof r === "string" ? r : r ? JSON.stringify(r) : "", c !== "p"];
+		return [typeof r === "string" ? r : JSON.stringify(r), c !== "p"];
 	}
 };
