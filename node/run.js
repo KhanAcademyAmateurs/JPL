@@ -7,8 +7,11 @@ var i = readline.createInterface({
 	terminal: false
 });
 
-while (true) {
+function prompt () {
 	i.question("> ", function (line) {
 		process.stdout.write(JPL.exec(JPL, line));
+		prompt();
 	});
 }
+
+prompt();
