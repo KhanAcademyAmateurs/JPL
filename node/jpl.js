@@ -1,6 +1,6 @@
 module.exports = {
 	cmd: {
-		"p": [[JSON.stringify], (j, a) => a],
+		"p": [[JSON.stringify], (j, a) => a[0]],
 		"+": [[Number, Number], (j, a) => a[0] + a[1]],
 		"-": [[Number, Number], (j, a) => a[0] - a[1]],
 		"s": [[String, a => a], function (j, a) {
