@@ -4,7 +4,7 @@ var readline = require("readline");
 var i = readline.createInterface({
 	input: process.stdin,
 	output: process.stdout,
-	terminal: false
+	terminal: true
 });
 
 function prompt () {
