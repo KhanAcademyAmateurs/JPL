@@ -38,7 +38,7 @@ module.exports = {
 		}],
 		"i": [[Boolean, String], function (j, a) {
 			if (a[0]) {
-				return j.exec(j, a[1]);
+				return j.exec(j, a[1].replace(/,/g, " "));
 			} else {
 				return "";
 			}
