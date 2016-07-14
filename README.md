@@ -43,6 +43,7 @@ F 8 3
 $ Some more operators:
 $ The concatenation function 'c'. Because JPL uses a combination of static and dynamic typing (function arguments are automatically casted, while variables are dynamic), 'c' and '+' must be separate.
 $ Note the backslashes; these tell JPL to cast to string instead of evaluating them as functions.
+$ Unnecessary backslashes are ignored.
 $ Prints "lolcat".
 c \lol \cat
 ```
