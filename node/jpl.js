@@ -1,5 +1,5 @@
 module.exports = {
-	pluralize: a => a - 1 ? "s" : "",
+	pl: a => a - 1 ? "s" : "",
 	err: a => "JPL: Error: " + a,
 	
 	previous: undefined,
@@ -35,6 +35,13 @@ module.exports = {
 			}
 			
 			return p;
+		}],
+		"i": [[Boolean, String], function (j, a) {
+			if (a[0]) {
+				return j.exec(j, a[1]);
+			} else {
+				return "";
+			}
 		}]
 	},
 	exec: function (j, s) {
@@ -56,7 +63,7 @@ module.exports = {
 		var n = s.length;
 		
 		if (n !== t) {
-			return [j.err("Incorrect number of arguments: '" + c + "' takes " + n + " argument" + j.pluralize(n)), true];
+			return [j.err("Incorrect number of arguments: '" + c + "' takes " + n + " argument" + j.pl(n)), true];
 		}
 		
 		for (var i = 0; i < n; i ++) {
