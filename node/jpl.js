@@ -71,9 +71,7 @@ module.exports = {
 			var o = k.split(",");
 			
 			if (o.length < 2 && !/^[a-z]+$/g.test(k)) {
-				a.push(k);
-			} else if (k[0] === "\\") {
-				a.push(k.slice(1, k.length));
+				a.push(k[0] === "\\" ? k.slice(1, k.length) : k);
 			} else {
 				a.push(j.exec(j, o.join(" "))[0]);
 			}
