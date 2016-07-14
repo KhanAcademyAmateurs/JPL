@@ -1,6 +1,6 @@
 module.exports = {
 	pl: a => a - 1 ? "s" : "",
-	err: a => "JPL: Error: " + a,
+	err: a => "\\e[31mJPL: Error: " + a + "\e[0m",
 	
 	previous: undefined,
 	vars: {},
