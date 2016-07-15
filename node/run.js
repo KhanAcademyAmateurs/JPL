@@ -10,7 +10,7 @@ var i = readline.createInterface({
 function prompt () {
 	i.question("> ", function (line) {
 		var result = JPL.exec(JPL, line); 
-		
+		console.log(result);
 		process.stdout.write(result[0] + (result[1] ? "\n" : ""));
 		prompt();
 	});
