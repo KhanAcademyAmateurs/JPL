@@ -63,7 +63,7 @@ module.exports = {
 		var n = s.length;
 		
 		if (n !== t) {
-			return [j.err("Incorrect number of arguments: '" + c + "' takes " + n + " argument" + j.pl(n)), true];
+			return [j.err("Incorrect number of arguments: '" + c + "' takes " + t + " argument" + j.pl(t)), true];
 		}
 		
 		for (var i = 0; i < n; i ++) {
