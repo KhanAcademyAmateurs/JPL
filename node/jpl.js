@@ -82,7 +82,7 @@ module.exports = {
 		var r = m[1](j, a.map(function (e, i) {
 			return m[0][i](e);
 		}));
-		
+		console.log("c = " + c + ", m = " + m, ", r = " + r);
 		j.previous = r;
 		
 		return [typeof r === "string" ? r : (r = JSON.stringify(r)), c !== "p" && r.length];
