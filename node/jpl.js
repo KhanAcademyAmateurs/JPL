@@ -5,7 +5,7 @@ module.exports = {
 	previous: undefined,
 	vars: {},
 	cmd: {
-		"p": [[JSON.stringify], (j, a) => a[0]],
+		"p": [[a => a instanceof String ? a : JSON.stringify(a)], (j, a) => a[0]],
 		"+": [[Number, Number], (j, a) => a[0] + a[1]],
 		"-": [[Number, Number], (j, a) => a[0] - a[1]],
 		"*": [[Number, Number], (j, a) => a[0] * a[1]],
