@@ -21,9 +21,9 @@ $ Prints 12 (3 + 4 + 5). The outermost scope's args are separated by a space, wh
 + 3 +,4,5
 $ Explicity prints -3 (3 - 6). Because it's explicit, it doesn't print a newline:
 p -,3,6
-$ Prints 24 (3 * 8). First it stores it in a variable named A (variable & function names must be uppercase), then gets it:
+$ Prints 24 (3 * 8). First it stores it in a variable named A (variable & function names must be uppercase), then prints it:
 s A *,3,8
-g A
+p A
 $ Prints 2 (floor(8 / 3)). It defines a function to compute floor(x / y), then runs it.
 $ First we define the function, arity (number of arguments = 2), and arg types in array (N-umber, N-umber).
 $ Then we specify the code the function runs (floor the division of A and B, then return). The arguments start at A and end at Z. The arity is set at 2, so only the arguments A and B are defined.
@@ -35,7 +35,7 @@ $ NOTE: You cannot have 2 scopes nested within each other; therefore you cannot 
 $       Also, the whitespace behind the commands is unnecessary, but the whitespace after them are!
 $ Then we simply print.
 d F 2 a,N,N
-    / g,A g,B
+    / A B
     f t
     r t
 e
