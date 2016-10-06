@@ -48,7 +48,10 @@ module.exports = {
 			return p;
 		}],
 		"i": [[a => JSON.parse(String(a).toLowerCase()), String], (j, a) => (j.previous.condition = a[0]) ? a[1] : ""],
-		"ei": [[a => JSON.parse(String(a).toLowerCase()), String], (j, a) => (j.previous.condition &= a[0]) ? a[1] : ""],
+		"ei": [[a => JSON.parse(String(a).toLowerCase()), String], function (j, a) {
+			j.previous.condition = !j.previous.condition && a[0];
+			return j.previous.condition ? a[1] : "";
+		}],
 		"e": [[String], (j, a) => (j.previous.condition ^= 1) ? a[0] : ""]
 	},
 	exec: function (j, s) {
