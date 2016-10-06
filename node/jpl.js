@@ -82,8 +82,10 @@ module.exports = {
 			
 			if (o.length < 2 && !/^[a-z]+$/g.test(k)) {
 				if (/^[A-Za-z]+$/g.test(k)) {
-					if (k in j.vars) {
-						a.push(j.vars[k]);
+					var v = j.vars[k];
+					
+					if (v !== undefined) {
+						a.push(v);
 					} else {
 						a.push([j.err("Variable '" + k + "' not found"), true, true]);
 					}
