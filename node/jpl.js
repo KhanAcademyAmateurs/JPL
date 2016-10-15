@@ -42,7 +42,25 @@ module.exports = {
 			var p = j.previous.value;
 			
 			if (p === undefined) {
-				return j.err("Nothing to take using 't'");
+				return j.err("No value to take using 't'");
+			}
+			
+			return p;
+		}],
+		"tc": [[], function (j) {
+			var p = j.previous.condition;
+			
+			if (p === undefined) {
+				return j.err("No condition to take using 'tc'");
+			}
+			
+			return p;
+		}],
+		"ts": [[], function (j) {
+			var p = j.previous.operation;
+			
+			if (p === undefined) {
+				return j.err("No operation to take using 'ts'");
 			}
 			
 			return p;
@@ -52,10 +70,11 @@ module.exports = {
 			j.previous.condition = !j.previous.condition && a[0];
 			return j.previous.condition ? a[1] : "";
 		}],
-		"e": [[String], (j, a) => (j.previous.condition ^= 1) ? a[0] : ""]
+		"e": [[String], (j, a) => (j.previous.condition ^= 1) ? a[0] : ""],
+		"f": [[String, 
 	},
 	exec: function (j, s) {
-		s = s.replace(/^ +/, "").split(" ");
+		s = s.replace(/^\s+/, "").replace(/\s+$/, "").split(" ");
 		var c = s.shift();
 		var a = [];
 		
@@ -66,7 +85,7 @@ module.exports = {
 		var m = j.cmd[c];
 		
 		if (!m) {
-			return [j.err("Function not found: '" + c + "'"), true, true];
+			return [j.err("Operation not found: '" + c + "'"), true, true];
 		}
 		
 		var t = m[0].length;
@@ -109,6 +128,7 @@ module.exports = {
 		}));
 		
 		j.previous.value = r;
+		j.previous.operation = s;
 		
 		return [typeof r === "string" ? r : (r = JSON.stringify(r)), c !== "p" && r.length, false];
 	}
