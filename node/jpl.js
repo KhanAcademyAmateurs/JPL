@@ -86,9 +86,9 @@ module.exports = {
 		
 		if (c === "f") {
 			j.vars[s[0]] = s[1];
-			while (j.exec(s[2].replace(/,/g, " "))[0] === "true") {
-				j.exec(s[4].replace(/,/g, " "));
-				j.exec(s[3].replace(/,/g, " "));
+			while (j.exec(j, s[2].replace(/,/g, " "))[0] === "true") {
+				j.exec(j, s[4].replace(/,/g, " "));
+				j.exec(j, ("s N " + s[3]).replace(/,/g, " "));
 			}
 		}
 		
