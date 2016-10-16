@@ -4,8 +4,10 @@ module.exports = {
 	
 	previous: {
 		value: undefined,
-		condition: undefined
+		condition: undefined,
+		operation: undefined
 	},
+	
 	vars: {
 		FALSE: 0,
 		TRUE: 1
@@ -70,9 +72,9 @@ module.exports = {
 			j.previous.condition = !j.previous.condition && a[0];
 			return j.previous.condition ? a[1] : "";
 		}],
-		"e": [[String], (j, a) => (j.previous.condition ^= 1) ? a[0] : ""],
-		"f": [[String, 
+		"e": [[String], (j, a) => (j.previous.condition ^= 1) ? a[0] : ""]
 	},
+	
 	exec: function (j, s) {
 		s = s.replace(/^\s+/, "").replace(/\s+$/, "").split(" ");
 		var c = s.shift();
@@ -80,6 +82,14 @@ module.exports = {
 		
 		if (c === "$" || !c.length) {
 			return ["", false];
+		}
+		
+		if (c === "f") {
+			j.vars[s[0]] = s[1];
+			while (j.exec(s[2].replace(/,/g, " "))[0] === "true") {
+				j.exec(s[4].replace(/,/g, " "));
+				j.exec(s[3].replace(/,/g, " "));
+			}
 		}
 		
 		var m = j.cmd[c];
