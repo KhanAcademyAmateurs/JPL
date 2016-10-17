@@ -8,7 +8,7 @@ module.exports = {
 		arity: 0,
 		casts: [],
 		jpl: [],
-		ojpl: ""
+		ojpl: "",
 	},
 	functions: {},
 	vargs: ["ru"],
@@ -16,12 +16,12 @@ module.exports = {
 	previous: {
 		value: undefined,
 		condition: undefined,
-		operation: undefined
+		operation: undefined,
 	},
 	
 	vars: {
 		FALSE: 0,
-		TRUE: 1
+		TRUE: 1,
 	},
 	
 	op: {
@@ -156,7 +156,7 @@ module.exports = {
 			}
 			
 			return j.exec(j, insert(f.ojpl.replace(/,/g, " ")))[0];
-		}]
+		}],
 	},
 	
 	exec: function (j, s) {
