@@ -80,7 +80,7 @@ module.exports = {
 			console.log(j.exec(j, a[2].replace(/,/g, " "))[0]);
 			while (j.exec(j, a[2].replace(/,/g, " "))[0] === "true") {
 				s.push(j.exec(j, a[4].replace(/,/g, " "))[0]);
-				j.exec(j, "s N " + a[3]);
+				j.vars[a[0]] = j.exec(j, a[3])[0];
 			}
 			
 			return s.join("\n");
