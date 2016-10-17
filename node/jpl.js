@@ -10,6 +10,7 @@ module.exports = {
 		jpl: []
 	},
 	functions: {},
+	vargs: ["r"],
 	
 	previous: {
 		value: undefined,
@@ -119,10 +120,11 @@ module.exports = {
 			return "";
 		}],
 		"r": [[String], function (j, a) {
-			var f = j.functions[a[0]];
+			var n = a.shift();
+			var f = j.functions[n];
 			
 			if (!f) {
-				return j.err("No function named '" + a.shift() + "'");
+				return j.err("No function named '" + n + "'");
 			}
 			
 			var s = [];
@@ -175,7 +177,7 @@ module.exports = {
 		var t = m[0].length;
 		var n = s.length;
 		
-		if (n !== t) {
+		if (n !== t && j.vargs.indexOf(c) > -1) {
 			return [j.err("Incorrect number of arguments: '" + c + "' takes " + t + " argument" + j.pl(t)), true, true];
 		}
 		
