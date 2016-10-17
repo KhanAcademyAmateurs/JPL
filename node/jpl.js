@@ -166,6 +166,7 @@ module.exports = {
 		
 		if (j.function.in && c !== "ed") {
 			j.function.jpl.push(c + " " + s.join(" "));
+			return ["", false, false];
 		}
 		
 		var m = j.op[c];
