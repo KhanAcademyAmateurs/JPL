@@ -110,8 +110,13 @@ module.exports = {
 			return "";
 		}],
 		"re": [[String], function (j, a) {
-			j.function.ojpl = a[0];
-			j.functions[j.function.name] = JSON.parse(JSON.stringify(j.function));
+			j.functions[j.function.name] = {
+				arity: j.function.arity,
+				casts: j.function.casts,
+				jpl: j.function.jpl,
+				ojpl: a[0]
+			};
+			
 			j.function = {
 				in: false,
 				name: undefined,
