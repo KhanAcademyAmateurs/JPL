@@ -154,16 +154,16 @@ module.exports = {
 	},
 	
 	exec: function (j, s) {
-		if (j.function.in) {
-			j.function.jpl.push(s);
-		}
-		
 		s = s.replace(/^\s+/, "").replace(/\s+$/, "").split(" ");
 		var c = s.shift();
 		var a = [];
 		
 		if (c === "$" || !c.length) {
 			return ["", false, false];
+		}
+		
+		if (j.function.in && c !== "ed") {
+			j.function.jpl.push(c + s.join(" "));
 		}
 		
 		var m = j.op[c];
