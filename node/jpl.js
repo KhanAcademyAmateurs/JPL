@@ -12,13 +12,15 @@ module.exports = {
 		FALSE: 0,
 		TRUE: 1
 	},
-	cmd: {
+	
+	op: {
 		"p": [[String], (j, a) => a[0]],
 		"+": [[Number, Number], (j, a) => a[0] + a[1]],
 		"-": [[Number, Number], (j, a) => a[0] - a[1]],
 		"*": [[Number, Number], (j, a) => a[0] * a[1]],
 		"/": [[Number, Number], (j, a) => a[0] / a[1]],
 		"%": [[Number, Number], (j, a) => a[0] % a[1]],
+		"**": [[Number, Number], (j, a) => Math.pow(a[0], a[1])],
 		"=": [[a => a, a => a], (j, a) => a[0] == a[1]],
 		">": [[Number, Number], (j, a) => a[0] > a[1]],
 		"<": [[Number, Number], (j, a) => a[0] < a[1]],
@@ -31,7 +33,6 @@ module.exports = {
 		"|": [[Number, Number], (j, a) => a[0] | a[1]],
 		"~": [[Number], (j, a) => ~a[0]],
 		"^": [[Number, Number], (j, a) => a[0] ^ a[1]],
-		"**": [[Number, Number], (j, a) => Math.pow(a[0], a[1])],
 		"c": [[String, String], (j, a) => a[0] + a[1]],
 		"s": [[String, a => a], function (j, a) {
 			if (/^[a-z]+$/g.test(a[0])) {
@@ -84,7 +85,8 @@ module.exports = {
 			}
 			
 			return s.join("\n");
-		}]
+		}],
+		"d": [[], _=>0]
 	},
 	
 	exec: function (j, s) {
@@ -96,7 +98,7 @@ module.exports = {
 			return ["", false];
 		}
 		
-		var m = j.cmd[c];
+		var m = j.op[c];
 		
 		if (!m) {
 			return [j.err("Operation not found: '" + c + "'"), true, true];
