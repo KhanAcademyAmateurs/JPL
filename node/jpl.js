@@ -163,7 +163,7 @@ module.exports = {
 		}
 		
 		if (j.function.in && c !== "ed") {
-			j.function.jpl.push(c + s.join(" "));
+			j.function.jpl.push(c + " " + s.join(" "));
 		}
 		
 		var m = j.op[c];
