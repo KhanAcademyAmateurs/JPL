@@ -140,7 +140,7 @@ module.exports = {
 					
 					k = k.replace(new RegExp("ABCDEFGHIJKLMNOPQRSTUVWXYZ"[y], "g"), p + a[y]);
 				}
-				
+				console.log(k);
 				var r = j.exec(j, k);
 				
 				if (r[2]) {
