@@ -113,7 +113,9 @@ module.exports = {
 			var k = s[i];
 			var o = k.split(",");
 			
-			if (o.length < 2 && !/^[a-z]+$/g.test(k)) {
+			if (k[0] === "\\") {
+				a.push(k.slice(1));
+			} else if (o.length < 2 && !/^[a-z]+$/g.test(k)) {
 				if (/^[A-Za-z]+$/g.test(k)) {
 					var v = j.vars[k];
 					
@@ -122,8 +124,6 @@ module.exports = {
 					} else {
 						a.push([j.err("Variable '" + k + "' not found"), true, true]);
 					}
-				} else if (k.indexOf("\\") > -1) {
-					a.push(k.replace(/\\/g, ""));
 				} else {
 					a.push(k);
 				}
