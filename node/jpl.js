@@ -2,6 +2,15 @@ module.exports = {
 	pl: a => a - 1 ? "s" : "",
 	err: a => "\033[31mJPL: Error: " + a + "\033[0m",
 	
+	function: {
+		in: false,
+		name: undefined,
+		arity: 0,
+		casts: [],
+		jpl: []
+	},
+	functions: {},
+	
 	previous: {
 		value: undefined,
 		condition: undefined,
@@ -86,10 +95,69 @@ module.exports = {
 			
 			return s.join("\n");
 		}],
-		"d": [[], _=>0]
+		"d": [[String, Number], function (j, a) {
+			j.function = {
+				in: true,
+				name: a.shift(),
+				arity: a.shift(),
+				casts: a,
+				jpl: []
+			};
+			
+			return "";
+		}],
+		"ed": [[], function (j, a) {
+			j.functions[j.function.name] = JSON.parse(JSON.stringify(j.function));
+			j.function = {
+				in: false,
+				name: undefined,
+				arity: 0,
+				casts: [],
+				jpl: []
+			};
+			
+			return "";
+		}],
+		"r": [[String], function (j, a) {
+			var f = j.functions[a[0]];
+			
+			if (!f) {
+				return j.err("No function named '" + a.shift() + "'");
+			}
+			
+			var s = [];
+			
+			for (var i = 0; i < f.jpl.length; i ++) {
+				var k = f.jpl[i];
+				
+				for (var j = 0; j < f.arity; j ++) {
+					var p;
+					
+					if (f.casts[j] === "str") {
+						p = "\\";
+					}
+					
+					k = k.replace(new RegExp("ABCDEFGHIJKLMNOPQRSTUVWXYZ"[j], "g"), p + a[j]);
+				}
+				
+				var r = j.exec(j, k);
+				
+				if (r[2]) {
+					return r;
+				}
+				
+				s.push(r[0]);
+			}
+			
+			return s.join("\n");
+		}]
 	},
 	
 	exec: function (j, s) {
+		if (j.function.in) {
+			j.function.jpl.push(s);
+		}
+		
 		s = s.replace(/^\s+/, "").replace(/\s+$/, "").split(" ");
 		var c = s.shift();
 		var a = [];
@@ -124,7 +192,7 @@ module.exports = {
 					if (v !== undefined) {
 						a.push(v);
 					} else {
-						a.push([j.err("Variable '" + k + "' not found"), true, true]);
+						return [j.err("Variable '" + k + "' not found"), true, true];
 					}
 				} else {
 					a.push(k);
@@ -136,10 +204,6 @@ module.exports = {
 		}
 		
 		var r = m[1](j, a.map(function (e, i) {
-			if (typeof e === "object" && e[2]) {
-				return e[0] + ((i + 1) === a.length ? "" : "\n");
-			}
-			
 			return m[0][i](e);
 		}));
 		
