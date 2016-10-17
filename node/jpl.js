@@ -7,7 +7,8 @@ module.exports = {
 		name: undefined,
 		arity: 0,
 		casts: [],
-		jpl: []
+		jpl: [],
+		ojpl: ""
 	},
 	functions: {},
 	vargs: ["ru"],
@@ -102,19 +103,22 @@ module.exports = {
 				name: a.shift(),
 				arity: a.shift(),
 				casts: a,
-				jpl: []
+				jpl: [],
+				ojpl: ""
 			};
 			
 			return "";
 		}],
-		"ed": [[], function (j, a) {
+		"re": [[String], function (j, a) {
+			j.function.ojpl = a[0];
 			j.functions[j.function.name] = JSON.parse(JSON.stringify(j.function));
 			j.function = {
 				in: false,
 				name: undefined,
 				arity: 0,
 				casts: [],
-				jpl: []
+				jpl: [],
+				ojpl: ""
 			};
 			
 			return "";
@@ -129,9 +133,7 @@ module.exports = {
 			
 			var s = [];
 			
-			for (var x = 0; x < f.jpl.length; x ++) {
-				var k = f.jpl[x];
-				
+			function insert (f, k) {
 				for (var y = 0; y < f.arity; y ++) {
 					var p = "";
 					
@@ -141,17 +143,19 @@ module.exports = {
 					
 					k = k.replace(new RegExp("ABCDEFGHIJKLMNOPQRSTUVWXYZ"[y], "g"), p + a[y]);
 				}
+			}
+			
+			for (var x = 0; x < f.jpl.length; x ++) {
+				var k = f.jpl[x];
 				
-				var r = j.exec(j, k);
+				var r = j.exec(j, insert(k));
 				
 				if (r[2]) {
 					return r;
 				}
-				
-				s.push(r[0]);
 			}
 			
-			return s.join("\n").replace(/\n\n+/g, "\n");
+			return j.exec(j, insert(f.ojpl.replace(/,/g, " ")))[0];
 		}]
 	},
 	
