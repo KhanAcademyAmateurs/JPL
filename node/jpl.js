@@ -133,7 +133,7 @@ module.exports = {
 				var k = f.jpl[x];
 				
 				for (var y = 0; y < f.arity; y ++) {
-					var p;
+					var p = "";
 					
 					if (f.casts[y] === "str") {
 						p = "\\";
