@@ -10,7 +10,7 @@ module.exports = {
 		jpl: []
 	},
 	functions: {},
-	vargs: ["r"],
+	vargs: ["ru"],
 	
 	previous: {
 		value: undefined,
@@ -119,7 +119,7 @@ module.exports = {
 			
 			return "";
 		}],
-		"r": [[String], function (j, a) {
+		"ru": [[String], function (j, a) {
 			var n = a.shift();
 			var f = j.functions[n];
 			
@@ -151,7 +151,7 @@ module.exports = {
 				s.push(r[0]);
 			}
 			
-			return s.join("\n");
+			return s.join("\n").replace(/\n\n/g, "\n");
 		}]
 	},
 	
