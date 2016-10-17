@@ -75,10 +75,15 @@ module.exports = {
 		"e": [[String], (j, a) => (j.previous.condition ^= 1) ? a[0] : ""],
 		"f": [[a => a, a => a, a => a, a => a, a => a], function (j, a) {
 			j.vars[a[0]] = a[1];
+			
+			var s = [];
+			
 			while (j.exec(j, a[2].replace(/,/g, " "))[0] === "true") {
-				j.exec(j, a[4].replace(/,/g, " "));
+				s.push(j.exec(j, a[4].replace(/,/g, " "))[0]);
 				j.exec(j, "s N " + a[3].replace(/,/g, " "));
 			}
+			
+			return s.join("\n");
 		}]
 	},
 	
