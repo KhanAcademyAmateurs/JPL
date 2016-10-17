@@ -156,6 +156,7 @@ module.exports = {
 	exec: function (j, s) {
 		if (j.function.in) {
 			j.function.jpl.push(s);
+			return ["", false, false];
 		}
 		
 		s = s.replace(/^\s+/, "").replace(/\s+$/, "").split(" ");
@@ -163,7 +164,7 @@ module.exports = {
 		var a = [];
 		
 		if (c === "$" || !c.length) {
-			return ["", false];
+			return ["", false, false];
 		}
 		
 		var m = j.op[c];
