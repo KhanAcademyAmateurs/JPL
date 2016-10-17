@@ -16,6 +16,7 @@ function prompt () {
 		if (JPL.function.in) {
 			ps4 = ". ";
 		} else {
+			ps4 = "> ";
 			process.stdout.write(result[0] + (result[1] ? "\n" : ""));
 		}
 		
