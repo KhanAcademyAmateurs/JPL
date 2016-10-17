@@ -218,5 +218,5 @@ module.exports = {
 		j.previous.operation = s;
 		
 		return [typeof r === "string" ? r : (r = JSON.stringify(r)), c !== "p" && r.length, false];
-	}
+	},
 };
