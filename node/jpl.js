@@ -115,7 +115,7 @@ module.exports = {
 				casts: [],
 				jpl: []
 			};
-			console.log(j.function);
+			console.log(3);
 			
 			return "";
 		}],
