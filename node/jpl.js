@@ -126,6 +126,8 @@ module.exports = {
 				ojpl: ""
 			};
 			
+			console.log(j.function);
+			
 			return "";
 		}],
 		"ru": [[String], function (j, a) {
