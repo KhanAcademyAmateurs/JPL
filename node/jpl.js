@@ -72,7 +72,14 @@ module.exports = {
 			j.previous.condition = !j.previous.condition && a[0];
 			return j.previous.condition ? a[1] : "";
 		}],
-		"e": [[String], (j, a) => (j.previous.condition ^= 1) ? a[0] : ""]
+		"e": [[String], (j, a) => (j.previous.condition ^= 1) ? a[0] : ""],
+		"f": [[a => a, a => a, a => a, a => a, a => a], function (j, a) {
+			j.vars[a[0]] = a[1];
+			while (j.exec(j, a[2].replace(/,/g, " "))[0] === "true") {
+				j.exec(j, a[4].replace(/,/g, " "));
+				j.exec(j, "s N " + a[3].replace(/,/g, " "));
+			}
+		}]
 	},
 	
 	exec: function (j, s) {
@@ -82,14 +89,6 @@ module.exports = {
 		
 		if (c === "$" || !c.length) {
 			return ["", false];
-		}
-		
-		if (c === "f") {
-			j.vars[s[0]] = s[1];
-			while (j.exec(j, s[2].replace(/,/g, " "))[0] === "true") {
-				j.exec(j, s[4].replace(/,/g, " "));
-				j.exec(j, ("s N " + s[3]).replace(/,/g, " "));
-			}
 		}
 		
 		var m = j.cmd[c];
