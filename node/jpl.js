@@ -81,7 +81,6 @@ module.exports = {
 			while (j.exec(j, a[2].replace(/,/g, " "))[0] === "true") {
 				s.push(j.exec(j, a[4].replace(/,/g, " "))[0]);
 				j.vars[a[0]] = j.exec(j, a[3].replace(/,/g, " "))[0];
-				console.log(j.vars[a[0]]);
 			}
 			
 			return s.join("\n");
