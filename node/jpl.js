@@ -80,7 +80,7 @@ module.exports = {
 			
 			while (j.exec(j, a[2].replace(/,/g, " "))[0] === "true") {
 				s.push(j.exec(j, a[4].replace(/,/g, " "))[0]);
-				j.exec(j, "s N " + a[3].replace(/,/g, " "));
+				j.exec(j, "s N " + a[3]);
 			}
 			
 			return s.join("\n");
