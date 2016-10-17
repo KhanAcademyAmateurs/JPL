@@ -151,7 +151,7 @@ module.exports = {
 				s.push(r[0]);
 			}
 			
-			return s.join("\n").replace(/\n\n/g, "\n");
+			return s.join("\n").replace(/\n\n+/g, "\n");
 		}]
 	},
 	
