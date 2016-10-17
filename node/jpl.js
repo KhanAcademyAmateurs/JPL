@@ -126,8 +126,6 @@ module.exports = {
 				ojpl: ""
 			};
 			
-			console.log(j.function);
-			
 			return "";
 		}],
 		"ru": [[String], function (j, a) {
@@ -175,7 +173,7 @@ module.exports = {
 			return ["", false, false];
 		}
 		
-		if (j.function.in && c !== "ed") {
+		if (j.function.in && c !== "re") {
 			j.function.jpl.push(c + " " + s.join(" "));
 			return ["", false, false];
 		}
