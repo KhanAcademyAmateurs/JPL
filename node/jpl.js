@@ -127,17 +127,17 @@ module.exports = {
 			
 			var s = [];
 			
-			for (var i = 0; i < f.jpl.length; i ++) {
-				var k = f.jpl[i];
+			for (var x = 0; x < f.jpl.length; x ++) {
+				var k = f.jpl[x];
 				
-				for (var j = 0; j < f.arity; j ++) {
+				for (var y = 0; y < f.arity; y ++) {
 					var p;
 					
-					if (f.casts[j] === "str") {
+					if (f.casts[y] === "str") {
 						p = "\\";
 					}
 					
-					k = k.replace(new RegExp("ABCDEFGHIJKLMNOPQRSTUVWXYZ"[j], "g"), p + a[j]);
+					k = k.replace(new RegExp("ABCDEFGHIJKLMNOPQRSTUVWXYZ"[y], "g"), p + a[y]);
 				}
 				
 				var r = j.exec(j, k);
