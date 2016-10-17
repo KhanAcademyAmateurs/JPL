@@ -206,7 +206,7 @@ module.exports = {
 		}
 		
 		var r = m[1](j, a.map(function (e, i) {
-			return m[0][i](e);
+			return m[0][i] ? m[0][i](e) : e;
 		}));
 		
 		j.previous.value = r;
