@@ -177,7 +177,7 @@ module.exports = {
 		var t = m[0].length;
 		var n = s.length;
 		
-		if (n !== t && j.vargs.indexOf(c) > -1) {
+		if (n !== t && j.vargs.indexOf(c) < 0) {
 			return [j.err("Incorrect number of arguments: '" + c + "' takes " + t + " argument" + j.pl(t)), true, true];
 		}
 		
