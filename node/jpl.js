@@ -155,11 +155,6 @@ module.exports = {
 	},
 	
 	exec: function (j, s) {
-		if (j.function.in) {
-			j.function.jpl.push(s);
-			return ["", false, false];
-		}
-		
 		s = s.replace(/^\s+/, "").replace(/\s+$/, "").split(" ");
 		var c = s.shift();
 		var a = [];
@@ -179,6 +174,10 @@ module.exports = {
 		
 		if (n !== t) {
 			return [j.err("Incorrect number of arguments: '" + c + "' takes " + t + " argument" + j.pl(t)), true, true];
+		}
+		
+		if (j.function.in) {
+			j.function.jpl.push(s);
 		}
 		
 		for (var i = 0; i < n; i ++) {
