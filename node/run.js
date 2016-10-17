@@ -1,6 +1,8 @@
 var JPL = require("./jpl.js");
 var readline = require("readline");
 
+var ps4 = "> ";
+
 var i = readline.createInterface({
 	input: process.stdin,
 	output: process.stdout,
@@ -8,9 +10,15 @@ var i = readline.createInterface({
 });
 
 function prompt () {
-	i.question("> ", function (line) {
+	i.question(ps4, function (line) {
 		var result = JPL.exec(JPL, line);
-		process.stdout.write(result[0] + (result[1] ? "\n" : ""));
+		
+		if (JPL.function.in) {
+			ps4 = ". ";
+		} else {
+			process.stdout.write(result[0] + (result[1] ? "\n" : ""));
+		}
+		
 		prompt();
 	});
 }
