@@ -10,7 +10,7 @@ module.exports = {
 	
 	vars: {
 		FALSE: 0,
-		TRUE: 1
+		TRUE: 1,
 	},
 	cmd: {
 		"p": [[String], (j, a) => a[0]],
