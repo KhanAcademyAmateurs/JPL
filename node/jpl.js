@@ -126,6 +126,8 @@ module.exports = {
 				delete j.vars["ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i]];
 			}
 			
+			console.log(j.functions[j.function.name].ojpl);
+			
 			j.function = {
 				in: false,
 				name: undefined,
