@@ -119,7 +119,7 @@ module.exports = {
 				arity: j.function.arity,
 				casts: j.function.casts,
 				jpl: j.function.jpl,
-				ojpl: "n " + (typeof a[0] === "string" ? "\\" : "") + a[0]
+				ojpl: "n " + ((typeof a[0] === "string" && !"ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(a[0])) ? "\\" : "") + a[0]
 			};
 			
 			for (var i = 0; i < j.function.arity; i ++) {
