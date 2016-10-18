@@ -107,6 +107,10 @@ module.exports = {
 				ojpl: ""
 			};
 			
+			for (var i = 0; i < j.function.arity; i ++) {
+				j.vars["ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i]] = 0;
+			}
+			
 			return "";
 		}],
 		"re": [[String], function (j, a) {
@@ -116,6 +120,10 @@ module.exports = {
 				jpl: j.function.jpl,
 				ojpl: a[0]
 			};
+			
+			for (var i = 0; i < j.function.arity; i ++) {
+				delete j.vars["ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i]];
+			}
 			
 			j.function = {
 				in: false,
@@ -138,29 +146,23 @@ module.exports = {
 			
 			var s = [];
 			
-			function insert (f, k) {
-				for (var i = 0; i < f.arity; i ++) {
-					var p = "";
-					
-					if (f.casts[i] === "str") {
-						p = "\\";
-					}
-					
-					k = k.replace(new RegExp("ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i], "g"), p + a[i]);
-				}
-				
-				return k;
+			for (var i = 0; i < j.function.arity; i ++) {
+				j.vars["ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i]] = a[i];
 			}
 			
 			for (var i = 0; i < f.jpl.length; i ++) {
-				var r = j.exec(j, insert(f, f.jpl[i]));
+				var r = j.exec(j, f.jpl[i]);
 				
 				if (r[2]) {
 					return r;
 				}
 			}
 			
-			return j.exec(j, insert(f, f.ojpl.replace(/,/g, " ")))[0];
+			for (var i = 0; i < j.function.arity; i ++) {
+				delete j.vars["ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i]];
+			}
+			
+			return j.exec(j, f.ojpl.replace(/,/g, " "))[0];
 		}],
 	},
 	
