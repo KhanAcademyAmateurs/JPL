@@ -151,6 +151,7 @@ module.exports = {
 			
 			for (var i = 0; i < j.function.arity; i ++) {
 				j.vars["ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i]] = a[i];
+				console.log("ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i]);
 			}
 			
 			j.function.run = true;
@@ -163,7 +164,7 @@ module.exports = {
 				}
 			}
 			
-			var t = j.exec(j, f.ojpl.replace(/,/g, " "))[0];
+			var t = j.exec(j, f.ojpl)[0];
 			
 			j.function.run = false;
 			
