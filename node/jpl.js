@@ -148,6 +148,8 @@ module.exports = {
 					
 					k = k.replace(new RegExp("ABCDEFGHIJKLMNOPQRSTUVWXYZ"[y], "g"), p + a[y]);
 				}
+				
+				return k;
 			}
 			
 			for (var x = 0; x < f.jpl.length; x ++) {
