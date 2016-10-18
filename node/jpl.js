@@ -25,7 +25,7 @@ module.exports = {
 	},
 	
 	op: {
-		"p": [[String], (j, a) => a[0]],
+		"p": [[a => a], (j, a) => a[0]],
 		"+": [[Number, Number], (j, a) => a[0] + a[1]],
 		"-": [[Number, Number], (j, a) => a[0] - a[1]],
 		"*": [[Number, Number], (j, a) => a[0] * a[1]],
