@@ -201,7 +201,7 @@ module.exports = {
 			if (k[0] === "\\") {
 				a.push(k.slice(1));
 			} else if (o.length < 2 && !/^[a-z]+$/g.test(k)) {
-				if (/^[A-Za-z]+$/g.test(k)) {
+				if (/^[A-Za-z]+$/g.test(k) && !j.function.in) {
 					var v = j.vars[k];
 					
 					if (v !== undefined) {
