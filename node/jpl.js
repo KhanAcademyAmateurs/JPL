@@ -139,30 +139,28 @@ module.exports = {
 			var s = [];
 			
 			function insert (f, k) {
-				for (var y = 0; y < f.arity; y ++) {
+				for (var i = 0; i < f.arity; i ++) {
 					var p = "";
 					
-					if (f.casts[y] === "str") {
+					if (f.casts[i] === "str") {
 						p = "\\";
 					}
 					
-					k = k.replace(new RegExp("ABCDEFGHIJKLMNOPQRSTUVWXYZ"[y], "g"), p + a[y]);
+					k = k.replace(new RegExp("ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i], "g"), p + a[i]);
 				}
 				
 				return k;
 			}
 			
-			for (var x = 0; x < f.jpl.length; x ++) {
-				var k = f.jpl[x];
-				
-				var r = j.exec(j, insert(k));
+			for (var i = 0; i < f.jpl.length; i ++) {
+				var r = j.exec(j, insert(f, f.jpl[i]));
 				
 				if (r[2]) {
 					return r;
 				}
 			}
 			
-			return j.exec(j, insert(f.ojpl.replace(/,/g, " ")))[0];
+			return j.exec(j, insert(f, f.ojpl.replace(/,/g, " ")))[0];
 		}],
 	},
 	
