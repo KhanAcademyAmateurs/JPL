@@ -144,6 +144,7 @@ module.exports = {
 			var f = j.functions[n];
 			
 			if (!f) {
+				console.log(3);
 				return j.err("No function named '" + n + "'");
 			}
 			
@@ -151,7 +152,6 @@ module.exports = {
 			
 			for (var i = 0; i < j.function.arity; i ++) {
 				j.vars["ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i]] = a[i];
-				console.log("ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i]);
 			}
 			
 			j.function.run = true;
