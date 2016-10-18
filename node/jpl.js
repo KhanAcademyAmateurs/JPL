@@ -101,6 +101,7 @@ module.exports = {
 		"d": [[String, Number], function (j, a) {
 			j.function = {
 				in: true,
+				run: false,
 				name: a.shift(),
 				arity: a.shift(),
 				casts: a,
@@ -119,17 +120,16 @@ module.exports = {
 				arity: j.function.arity,
 				casts: j.function.casts,
 				jpl: j.function.jpl,
-				ojpl: "n " + ((typeof a[0] === "string" && !("ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(a[0]) > -1)) ? "\\" : "") + a[0]
+				ojpl: "n " + a[0]
 			};
 			
 			for (var i = 0; i < j.function.arity; i ++) {
 				delete j.vars["ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i]];
 			}
 			
-			console.log(j.functions[j.function.name].ojpl);
-			
 			j.function = {
 				in: false,
+				run: false,
 				name: undefined,
 				arity: 0,
 				casts: [],
@@ -153,6 +153,8 @@ module.exports = {
 				j.vars["ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i]] = a[i];
 			}
 			
+			j.function.run = true;
+			
 			for (var i = 0; i < f.jpl.length; i ++) {
 				var r = j.exec(j, f.jpl[i]);
 				
@@ -160,6 +162,8 @@ module.exports = {
 					return r;
 				}
 			}
+			
+			j.function.run = false;
 			
 			for (var i = 0; i < j.function.arity; i ++) {
 				delete j.vars["ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i]];
@@ -203,7 +207,7 @@ module.exports = {
 			if (k[0] === "\\") {
 				a.push(k.slice(1));
 			} else if (o.length < 2 && !/^[a-z]+$/g.test(k)) {
-				if (/^[A-Za-z]+$/g.test(k) && !j.function.in) {
+				if (/^[A-Za-z]+$/g.test(k) && !j.function.in && !j.function.run) {
 					var v = j.vars[k];
 					
 					if (v !== undefined) {
