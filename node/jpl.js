@@ -8,7 +8,7 @@ module.exports = {
 		arity: 0,
 		casts: [],
 		jpl: [],
-		ojpl: "",
+		ojpl: ""
 	},
 	functions: {},
 	vargs: ["ru"],
@@ -16,16 +16,17 @@ module.exports = {
 	previous: {
 		value: undefined,
 		condition: undefined,
-		operation: undefined,
+		operation: undefined
 	},
 	
 	vars: {
 		FALSE: 0,
-		TRUE: 1,
+		TRUE: 1
 	},
 	
 	op: {
 		"p": [[a => a], (j, a) => a[0]],
+		"n": [[a => a], (j, a) => a[0]],
 		"+": [[Number, Number], (j, a) => a[0] + a[1]],
 		"-": [[Number, Number], (j, a) => a[0] - a[1]],
 		"*": [[Number, Number], (j, a) => a[0] * a[1]],
@@ -113,12 +114,12 @@ module.exports = {
 			
 			return "";
 		}],
-		"re": [[String], function (j, a) {
+		"re": [[a => a], function (j, a) {
 			j.functions[j.function.name] = {
 				arity: j.function.arity,
 				casts: j.function.casts,
 				jpl: j.function.jpl,
-				ojpl: a[0]
+				ojpl: "n " + (typeof a[0] === "string" ? "\\" : "") + a[0]
 			};
 			
 			for (var i = 0; i < j.function.arity; i ++) {
@@ -163,7 +164,7 @@ module.exports = {
 			}
 			
 			return j.exec(j, f.ojpl.replace(/,/g, " "))[0];
-		}],
+		}]
 	},
 	
 	exec: function (j, s) {
@@ -225,5 +226,5 @@ module.exports = {
 		j.previous.operation = s;
 		
 		return [typeof r === "string" ? r : (r = JSON.stringify(r)), c !== "p" && r.length, false];
-	},
+	}
 };
