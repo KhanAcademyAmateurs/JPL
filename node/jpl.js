@@ -163,9 +163,9 @@ module.exports = {
 				}
 			}
 			
-			j.function.run = false;
-			
 			var t = j.exec(j, f.ojpl.replace(/,/g, " "))[0];
+			
+			j.function.run = false;
 			
 			for (var i = 0; i < j.function.arity; i ++) {
 				delete j.vars["ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i]];
